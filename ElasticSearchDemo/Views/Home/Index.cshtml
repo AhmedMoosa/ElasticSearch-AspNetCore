@@ -1,0 +1,26 @@
+﻿@using Nest;
+@using ElasticSearchDemo.Data;
+@model ISearchResponse<Book>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <form asp-action="Search" asp-controller="Home" method="post">
+        <div class="form-group">
+            <input type="text" name="term" value="" class="form-control" />
+        </div>
+        <input type="submit" value="Search" class="btn btn-outline-primary" />
+    </form>
+</div>
+
+
+@if (Model.Documents.Any())
+{
+    <ul>
+        @foreach (var item in Model.Documents)
+        {
+            <li>Title : @item.Title</li>
+        }
+    </ul>
+}
